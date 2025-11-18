@@ -1,0 +1,59 @@
+@Library('sharedlib-1') _
+pipeline
+{
+    agent any
+    stages
+    {
+        stage('continuous download')
+        {
+            steps
+            {
+                script
+                {
+                    cicddy.gitdownload('Maven')
+                } 
+               } 
+        }
+         stage('continuous build')
+        {
+            steps
+            {
+                script
+                {
+                    cicddy.build()
+                } 
+               } 
+        }
+               
+               stage('continuous deployment')
+        {
+            steps
+            {
+                script
+                {
+                    cicddy.deployment('sharedlibex','172.31.44.38')
+                } 
+               } 
+                }
+                stage('continuous testing')
+        {
+            steps
+            {
+                script
+                {
+                    cicddy.testing('sharedlibex')
+                } 
+               } 
+                }
+                 stage('continuous release')
+        {
+            steps
+            {
+                script
+                {
+                    cicddy.release('sharedlibex','172.31.42.163')
+                } 
+               } 
+                }
+    }
+}
