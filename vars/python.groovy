@@ -14,7 +14,5 @@ scp /var/lib/jenkins/workspace/${jobname}/python.py ubuntu@${ip}:/home/ubuntu/te
 }
 def testing(jobname)
 {
-sh """
 sh 'python3 "/var/lib/jenkins/workspace/${jobname}/python.py"'
-"""
 }
